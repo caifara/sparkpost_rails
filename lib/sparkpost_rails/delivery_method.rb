@@ -66,7 +66,7 @@ module SparkPostRails
 
     def prepare_content_from mail
       if mail.multipart?
-        @data[:content][:html] = cleanse_encoding(mail.html_part.body.to_s)
+        @data[:content][:html] = cleanse_encoding(mail.html_part.body.to_s) if @data[:content][:html]
         @data[:content][:text] = cleanse_encoding(mail.text_part.body.to_s)
       else
         @data[:content][:text] = cleanse_encoding(mail.body.to_s)
